@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>진근 소개</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        body { background:#e5f0ff; }
+        .intro-box {
+            max-width: 800px; margin:50px auto;
+            background:white; padding:30px;
+            border-radius:15px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+        textarea {
+            width:100%; height:200px; padding:15px;
+            border-radius:8px; border:1px solid #ccc;
+            resize:none; font-size:16px;
+        }
+        button {
+            margin-top:15px; padding:12px 20px;
+            background:#4a76ff; color:white;
+            border:none; border-radius:8px;
+            cursor:pointer; font-size:16px;
+        }
+        button:hover { opacity:0.85; }
+    </style>
+</head>
+<body>
+
+<div class="intro-box">
+    <h2>진근의 소개</h2>
+    <p>자기소개를 입력하고 저장하세요!</p>
+
+    <textarea id="intro"></textarea>
+    <button onclick="saveIntro()">저장하기</button>
+</div>
+
+<script>
+window.onload = () => {
+    const saved = localStorage.getItem("intro_jin");
+    if(saved) document.getElementById("intro").value = saved;
+}
+function saveIntro(){
+    const val = document.getElementById("intro").value;
+    localStorage.setItem("intro_jin", val);
+    alert("저장 완료!");
+}
+</script>
+
+</body>
+</html>
