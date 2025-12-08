@@ -7,47 +7,131 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <style>
         body { background:#f7f2e8; }
-        .intro-box {
+        
+        /* 공통 컨테이너 스타일 */
+        .intro-box, .family-box, .mbti-box {
             max-width: 800px; margin:50px auto;
             background:#ffffff; padding:30px;
             border-radius:15px;
             box-shadow:0 4px 15px rgba(0,0,0,0.1);
         }
-        textarea {
-            width:100%; height:200px; padding:15px;
-            border-radius:8px; border:1px solid #ccc;
-            resize:none; font-size:16px;
+
+        /* 김애진 소개 콘텐츠 스타일 (사진 왼쪽) */
+        .intro-content {
+            display: flex; /* 사진과 텍스트를 나란히 배치 */
+            gap: 20px;
+            align-items: flex-start;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
         }
-        button {
-            margin-top:15px; padding:12px 20px;
-            background:#b7d8a6; color:white;
-            border:none; border-radius:8px;
-            cursor:pointer; font-size:16px;
+
+        /* MBTI 콘텐츠 스타일 (사진 오른쪽) */
+        .mbti-content {
+            display: flex; 
+            flex-direction: row-reverse; /* 사진을 오른쪽으로 이동 */
+            gap: 20px;
+            align-items: flex-start;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 8px;
         }
-        button:hover { opacity:0.85; }
+
+        /* 프로필 사진 스타일 */
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        /* 텍스트 정보 스타일 */
+        .text-info {
+            flex-grow: 1;
+            line-height: 1.6;
+        }
+
+        .text-info ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .text-info li {
+            margin-bottom: 5px;
+        }
+
+        /* 가족 소개 박스 내부 스타일 (텍스트 전용) */
+        .family-content {
+             padding: 15px;
+             border: 1px solid #eee;
+             border-radius: 8px;
+             line-height: 1.6;
+        }
+        
+        /* MBTI 박스 내부 목록 스타일 재정의 */
+        .mbti-box .mbti-content ul {
+            list-style-type: disc; 
+            margin-left: 20px;
+        }
     </style>
 </head>
 <body>
 
 <div class="intro-box">
-    <h2>애진의 소개</h2>
-    <p>자기소개를 입력하고 저장하세요!</p>
-
-    <textarea id="intro"></textarea>
-    <button onclick="saveIntro()">저장하기</button>
+    <h2>저를 소개합니다</h2>
+    
+    <div class="intro-content">
+        <img src="애진프로필사진.png" alt="김애진 프로필 사진" class="profile-photo">
+        
+        <div class="text-info">
+            <p>이름: 김애진</p>
+            <p>생년월일: 2006.08.29</p>
+            <ul>
+                <li>직업: 대학생</li>
+                <li>거주지: 강원특별자치도 원주시</li>
+                <li>이메일: aejinkim0829@gmail.com</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
-<script>
-window.onload = () => {
-    const saved = localStorage.getItem("intro_aejin");
-    if(saved) document.getElementById("intro").value = saved;
-}
-function saveIntro(){
-    const val = document.getElementById("intro").value;
-    localStorage.setItem("intro_aejin", val);
-    alert("저장 완료!");
-}
-</script>
+<div class="family-box">
+    <h2>가족을 소개합니다</h2>
+    <p>움툼지 가족</p>
+    
+    <div class="family-content">
+        <p>짐바브웨 언어로 '쉴터'라는 뜻을 가진 '움툼지'는 우리 가족 이름입니다.</p>
+        <p>엄마, 아빠, 오빠, 저, 남동생, 여동생, 그리고 토끼와 강아지까지 대가족을 이루고 있어요.</p>
+        <p>손님도 끊이지 않는 항상 복작복작하지만 우리집이지만, 방문하는 모든 이들애개 평범한 행복을 주는 쉴터가 되길 바라요!</p>
+        <p>기쁠 때도 슬플 때도, 저는 우리 가족을 생각합니다.</p>
+    </div>
+</div>
+
+<div class="intro-box mbti-box">
+    <h2>MBTI</h2>
+    <p>MBTI로 보는 김애진의 성격 유형</p>
+    
+    <div class="mbti-content">
+        <img src="mbti_image2.png" alt="MBTI INFJ 이미지" class="profile-photo"> 
+        
+        <div class="text-info">
+            <p>저의 MBTI는 INTJ (전략가)입니다.</p>
+            <p>비전과 실용주의가 결합된 성격</p>
+            <p>분석적인 마인드- 주변 세계를 이해하려는 끊임없는 노력</p>
+            <p>전략적인 사고방식- 다양한 사태를 대비한 계획 </p>
+            <p>독립적인 성향- 자율성 중시, 주체적인 일처리 선호</p>
+            <p>완벽주의 & 효율성 중시</p>
+            <ul>
+                <li>핵심 특징: 통찰력, 조용하고 신비로운 분위기, 이상주의적</li>
+                <li>관계: 진실되고 의미 있는 깊은 관계를 추구합니다.</li>
+                <li>생각: 미래 지향적이며, 목표 달성을 위해 계획을 세우는 것을 좋아합니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
