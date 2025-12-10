@@ -7,15 +7,7 @@
 
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #222;
-      --muted: #6b6b6b;
-
-      --jin-main: #93C5FD;
-      --yerim-main: #FBCFE8;
-      --chang-main: #111111;
-      --aejin-main: #D6C4A0;
-
+      --text: #fff; /* 배경이 사진이므로 기본 글자색을 흰색으로 변경 */
       --container-w: 1000px;
     }
 
@@ -25,77 +17,114 @@
       padding: 0;
     }
 
+    /* [핵심 수정 1] 배경 이미지를 body로 옮기고 고정(fixed) 시킴 */
     body {
       font-family: Inter, system-ui;
-      background: var(--bg);
-      color: var(--text);
       line-height: 1.6;
+      color: var(--text);
+
+      /* 배경 이미지 설정 */
+      background-image: url("ERICA.jpg");
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed; /* 스크롤 해도 배경은 가만히 있음 */
+      background-repeat: no-repeat;
+      
+      min-height: 100vh;
+      position: relative;
     }
 
-    /* 상단 ERICA 흐린 배경 영역 */
-   .hero {
-  width: 100%;
-  height: 350px;
-  background-image: url("ERICA.jpg");
-  background-size: cover;
-  background-position: center 67%;  /* ← 핵심 수정! */
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  filter: brightness(85%);
-}
-
-    /* 흐림 효과 오버레이 */
-    .hero::before {
+    /* [핵심 수정 2] 전체 화면을 살짝 어둡게 덮어주는 오버레이 */
+    body::before {
       content: "";
-      position: absolute;
+      position: fixed; /* 스크롤 해도 어두운 막이 유지됨 */
       inset: 0;
-      backdrop-filter: blur(4px);
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.6); /* 0.6 정도로 어둡게 처리 (글자 가독성 위함) */
+      z-index: -1; /* 내용물보다 뒤에 배치 */
+    }
+
+    /* 상단 타이틀 영역 */
+    .hero {
+      width: 100%;
+      height: 100vh; /* 화면 꽉 차게 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      /* 배경 이미지는 body가 담당하므로 제거 */
     }
 
     .hero-text {
-      position: relative;
       color: white;
-      font-size: 32px;
+      font-size: 48px;
       font-weight: 700;
-      z-index: 2;
-      padding: 0 20px;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      text-shadow: 0 4px 15px rgba(0,0,0,0.7);
+      animation: fadeInDown 1.5s ease-out;
+      margin-bottom: 20px;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 40px;
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+      animation: bounce 2s infinite;
+      letter-spacing: 2px;
     }
 
     .wrap {
       max-width: var(--container-w);
-      margin: 40px auto;
-      padding: 0 24px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      padding-bottom: 100px; /* 하단 여백 확보 */
     }
 
-    /* 카드 공통 스타일 */
+    /* [핵심 수정 3] 카드 스타일: 유리(Glass) 효과 적용 */
     section.person {
-      margin-top: 28px;
-      padding: 28px;
-      border-radius: 16px;
-      box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+      margin-top: 60px;
+      padding: 32px;
+      border-radius: 20px;
       cursor: pointer;
-      transition: transform 0.18s;
-    }
-    section.person:hover {
-      transform: translateY(-6px);
+      
+      /* 유리 효과 (배경 흐림 + 반투명) */
+      backdrop-filter: blur(10px); 
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* 그림자 진하게 */
+      border: 1px solid rgba(255, 255, 255, 0.2); /* 얇은 테두리 */
+
+      /* 애니메이션 초기값 */
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); /* 더 쫀득한 움직임 */
     }
 
-    /* 배경색 */
-    .jin { background: rgba(147,197,253,0.35); }
-    .yerim { background: rgba(251,207,232,0.45); }
-    .chang { background: rgba(17,17,17,0.10); }
-    .aejin { background: rgba(214,196,160,0.40); }
+    /* 카드 활성화 상태 */
+    section.person.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section.person:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+
+    /* 각 팀원별 배경색 수정 
+       배경이 어두운 사진이므로, 카드 색상을 조금 더 밝고 불투명하게 조정 
+       rgba의 마지막 숫자(0.xx)를 조절하여 투명도 설정
+    */
+    .jin { background: rgba(147, 197, 253, 0.85); }
+    .yerim { background: rgba(251, 207, 232, 0.85); }
+    .aejin { background: rgba(214, 196, 160, 0.85); }
+    .chang { background: rgba(220, 220, 220, 0.90); } /* 창민은 검정 배경 위라 밝은 회색으로 변경 추천 */
 
     .head {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .avatar-lg {
@@ -104,84 +133,100 @@
       border-radius: 50%;
       background-size: cover;
       background-position: center;
+      border: 4px solid rgba(255,255,255,0.5); /* 프로필 사진 테두리 */
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
 
-    /* 사진 파일 연결 */
+    /* 사진 연결 */
     .jin-photo { background-image: url('진근메인배너.png'); }
     .yerim-photo { background-image: url('예림메인배너.png'); }
     .changmin-photo { background-image: url('창민메인배너.png'); }
     .aejin-photo {
       background-image: url('애진메인배너.png');
       background-position: top center;
-      border: 6px solid #ffffff;
     }
 
-    /* 이름 */
-    .jin-name,
-    .yerim-name,
-    .changmin-name,
-    .aejin-name {
-      font-size: 20px;
-      font-weight: 600;
-      color: #222;
+    /* 이름 및 텍스트 색상 (카드 배경이 밝으므로 글자는 어두운 색) */
+    .jin-name, .yerim-name, .changmin-name, .aejin-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 4px;
+    }
+
+    .desc {
+      font-size: 16px; 
+      color: #333; 
+      font-weight: 500;
+      line-height: 1.5;
     }
 
     footer {
-      margin: 40px 0;
+      margin-top: 80px;
       text-align: center;
-      color: var(--muted);
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+
+    /* 애니메이션 키프레임 */
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 🔥 상단 흐릿한 ERICA 사진 영역 -->
   <div class="hero">
     <div class="hero-text">6조를 소개합니다!</div>
+    <div class="scroll-down">SCROLL DOWN ▼</div>
   </div>
 
-  <!-- 메인 콘텐츠 -->
   <div class="wrap">
-
-    <!-- 개인 카드 -->
+    
     <section class="person jin" onclick="location.href='jin.html'">
       <div class="head">
         <div class="avatar-lg jin-photo"></div>
-        <h2 class="jin-name">진근</h2>
-        <p style="font-size:15px; color:#555;">
-          "무슨 일이 있어도 결국에는 지나간다는 마음으로"
-        </p>
+        <div>
+          <h2 class="jin-name">진근</h2>
+          <p class="desc">"무슨 일이 있어도 결국에는 지나간다는 마음으로"</p>
+        </div>
       </div>
     </section>
 
     <section class="person yerim" onclick="location.href='yerim.html'">
       <div class="head">
         <div class="avatar-lg yerim-photo"></div>
-        <h2 class="yerim-name">예림</h2>
-        <p style="font-size:15px; color:#555;">
-          "나는 끈기와 성실함이 있는 사람이다."
-        </p>
+        <div>
+          <h2 class="yerim-name">예림</h2>
+          <p class="desc">"나는 끈기와 성실함이 있는 사람이다."</p>
+        </div>
       </div>
     </section>
 
     <section class="person aejin" onclick="location.href='aejin.html'">
       <div class="head">
         <div class="avatar-lg aejin-photo"></div>
-        <h2 class="aejin-name">애진</h2>
-        <p style="font-size:15px; color:#555;">
-          "작은 일에는 원칙이 아닌 연민으로"
-        </p>
+        <div>
+          <h2 class="aejin-name">애진</h2>
+          <p class="desc">"작은 일에는 원칙이 아닌 연민으로"</p>
+        </div>
       </div>
     </section>
 
     <section class="person chang" onclick="location.href='changmin.html'">
       <div class="head">
         <div class="avatar-lg changmin-photo"></div>
-        <h2 class="changmin-name">창민</h2>
-        <p style="font-size:15px; color:#555;">
-          "최선을 다하고, 그럼에도 안 되면 포기하라."
-        </p>
+        <div>
+          <h2 class="changmin-name">창민</h2>
+          <p class="desc">"최선을 다하고, 그럼에도 안 되면 포기하라."</p>
+        </div>
       </div>
     </section>
 
@@ -191,6 +236,28 @@
 
   </div>
 
+  <script>
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+          entry.target.classList.remove('active');
+        }
+      });
+    }, observerOptions);
+
+    const cards = document.querySelectorAll('.person');
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+
 </body>
 </html>
-
