@@ -47,7 +47,7 @@ Opensource Team 6 저장소는 팀원들의 자기소개 페이지를 포함한 
 1. 저장소를 클론합니다.
 
    ```bash
-   git clone <repository-url>
+   git clone <git clone https://github.com/aejin-cloud/Opensource_team-6.git>
    ```
 2. HTML 파일을 브라우저에서 열어 확인합니다.
 
