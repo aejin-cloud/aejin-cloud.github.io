@@ -52,7 +52,7 @@ Opensource Team 6 저장소는 팀원들의 자기소개 페이지를 포함한 
 ## 배포 주소 (웹사이트 바로가기)
 아래 링크를 클릭하면 완성된 포트폴리오 웹사이트를 바로 확인하실 수 있습니다.
 
-* https://aejin-cloud.github.io.git
+* https://aejin-cloud.github.io
 ---
 
 ## 프로젝트 실행 방법 (로컬 환경)
