@@ -1,60 +1,104 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="ko">
 <head>
-    <title>김창민 자기소개</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>김창민 자기소개</title>
 
     <style>
-        body { 
-            background:#111; 
-            color:white; 
-            font-family: Arial, sans-serif;
+        /* 기본 색 테마 */
+        :root {
+            --bg: #0d0d0d;
+            --card: #1a1a1a;
+            --sub: #252525;
+            --accent: #4da6ff;
+            --text: #e6e6e6;
+            --muted: #9e9e9e;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Pretendard", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         .intro-box {
-            max-width: 800px; 
-            margin:50px auto;
-            padding:10px;
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 20px;
+            animation: fadeIn 1.2s ease;
         }
 
         h2 {
-            text-align:center;
-            margin-bottom:40px;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--accent);
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .card-box {
-            background: #1c1c1c;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-            box-shadow:0 4px 10px rgba(0,0,0,0.4);
+            background: var(--card);
+            padding: 35px;
+            border-radius: 18px;
+            margin-top: 35px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.55);
         }
 
         .card-box h3 {
-            font-size: 24px;
             text-align: center;
-            margin-bottom:20px;
+            margin-bottom: 25px;
+            font-size: 26px;
+            color: var(--accent);
+        }
+
+        ul li {
+            margin: 8px 0;
+            font-size: 18px;
         }
 
         .sub-box {
-            background:#2a2a2a;
-            margin-top:20px;
-            padding:20px;
-            border-radius:12px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
+            background: var(--sub);
+            margin-top: 20px;
+            padding: 22px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
         }
 
-        .sub-box img {
-            width:120px;
-            height:auto;
-            border-radius:8px;
+        .sub-text h4 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--accent);
         }
 
-        .sub-text {
-            max-width:60%;
+        .sub-text p {
+            margin: 6px 0;
+            color: var(--muted);
+        }
+
+        img {
+            width: 140px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        /* 부드러운 등장 애니메이션 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -63,6 +107,8 @@
 
 <div class="intro-box">
     <h2>김창민 자기소개</h2>
+
+    
 
     <div class="card-box">
         <h3>기본 정보</h3>
@@ -76,7 +122,7 @@
 
     <div class="card-box">
         <h3>좌우명</h3>
-        <p>"최선을 다하고, 그럼에도 안되면 포기해라"</p>
+        <p style="text-align:center; font-style:italic; color:var(--muted); font-size:20px;">“최선을 다하고, 그럼에도 안되면 포기해라”</p>
     </div>
 
     <div class="card-box">
@@ -95,21 +141,23 @@
         <div class="sub-box">
             <div class="sub-text">
                 <h4>소설</h4>
+                <p style="font-style:italic; color:var(--accent); font-size:15px;">“나는 확신하고 싶다. 인간은 사랑과 혁명을 위해 태어난 것이다” - <사양></p>
                 <p>무라카미 하루키 &lt;노르웨이의 숲&gt;</p>
-                <p>다자이 오사무 &lt;사양&gt;</p>
-                <p>룰루 밀러 &lt;물고기는 존재하지 않는다&gt;</p>
+                <p>아쿠타가와 류노스케 &lt;라쇼몬&gt;</p>
+                <p>나쓰메 소세키 &lt;나는 고양이로소이다&gt;</p>
             </div>
-            <img src="노르웨이의 숲.jpg" alt="노르웨이의 숲 이미지" />
+            <img src="사양.jfif" alt="사양 이미지" />
         </div>
 
         <div class="sub-box">
             <div class="sub-text">
                 <h4>뮤지컬</h4>
+                <p style="font-style:italic; color:var(--accent); font-size:15px;">“세상이 무너진 이 순간, 너의 음악이 되리라!” - <팬텀></p>
                 <p>&lt;드라큘라&gt;</p>
-                <p>&lt;팬텀&gt;</p>
+                <p>&lt;웃는 남자&gt;</p>
                 <p>&lt;몬테크리스토&gt;</p>
             </div>
-            <img src="드라큘라.webp" alt="드라큘라 포스터" />
+            <img src="팬텀.webp" alt="팬텀 포스터" />
         </div>
 
     </div>
