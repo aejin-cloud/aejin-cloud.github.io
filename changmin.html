@@ -6,7 +6,6 @@
     <title>김창민 자기소개</title>
 
     <style>
-        /* 기본 색 테마 */
         :root {
             --bg: #0d0d0d;
             --card: #1a1a1a;
@@ -48,21 +47,42 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.45);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .card-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 28px rgba(0,0,0,0.55);
         }
 
-        .card-box h3 {
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 26px;
-            color: var(--accent);
+        .card-flex {
+            display: flex;
+            gap: 25px;
+            align-items: center;
         }
 
-        ul li {
-            margin: 8px 0;
+        .profile-img {
+            width: 150px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .card-info p {
+            margin: 6px 0;
+            font-size: 18px;
+        }
+
+        .fav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .fav-item {
+            background: var(--sub);
+            padding: 18px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
             font-size: 18px;
         }
 
@@ -95,7 +115,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
         }
 
-        /* 부드러운 등장 애니메이션 */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -104,20 +123,22 @@
 </head>
 
 <body>
-
 <div class="intro-box">
     <h2>김창민 자기소개</h2>
 
-    
-
     <div class="card-box">
         <h3>기본 정보</h3>
-        <p>이름: 김창민</p>
-        <p>생년월일: 2006.03.06</p>
-        <p>이메일: rla02o@naver.com</p>
-        <p>거주지: 대전광역시</p>
-        <p>가족 구성원: 아버지, 어머니, 누나</p>
-        <p>MBTI: INTJ</p>
+        <div class="card-flex">
+            <img class="profile-img" src="profile.jpg" alt="프로필 사진" />
+            <div class="card-info">
+                <p>이름: 김창민</p>
+                <p>생년월일: 2006.03.06</p>
+                <p>이메일: rla02o@naver.com</p>
+                <p>거주지: 대전광역시</p>
+                <p>가족 구성원: 아버지, 어머니, 누나</p>
+                <p>MBTI: INTJ</p>
+            </div>
+        </div>
     </div>
 
     <div class="card-box">
@@ -125,14 +146,36 @@
         <p style="text-align:center; font-style:italic; color:var(--muted); font-size:20px;">“최선을 다하고, 그럼에도 안되면 포기해라”</p>
     </div>
 
+    <!-- MBTI 섹션 수정된 버전 -->
+    <div class="card-box">
+        <h3>MBTI</h3>
+
+        <div class="sub-box">
+            <div class="sub-text">
+                <h4>INTJ</h4>
+                <p>현실주의자 - 현실적이고 실용적인 판단을 중시</p>
+                <p>논리적 탐색가 - 감정보다 논리와 분석을 우선</p>
+                <p>독립적 사색 - 혼자만의 시간에서 사고를 정리</p>
+                <p>효율 추구자 - 효율적인 목표 달성을 추구</p>
+                
+            </div>
+        </div>
+    </div>
+
     <div class="card-box">
         <h3>좋아하는 것</h3>
-        <ul>
-            <li>독서</li>
-            <li>뮤지컬</li>
-            <li>수면</li>
-            <li>겨울</li>
-        </ul>
+        <div class="fav-grid">
+            <div class="fav-item">독서</div>    
+            <div class="fav-item">뮤지컬</div>
+            <div class="fav-item">겨울</div>
+            <div class="fav-item">밤 산책</div>
+            <div class="fav-item">빗소리 듣기</div>
+            <div class="fav-item">수면</div>
+            <div class="fav-item">겨울</div>
+            <div class="fav-item">고양이</div>
+            <div class="fav-item">발라드</div>
+            <div class="fav-item">도서관</div>
+        </div>
     </div>
 
     <div class="card-box">
@@ -142,9 +185,9 @@
             <div class="sub-text">
                 <h4>소설</h4>
                 <p style="font-style:italic; color:var(--accent); font-size:15px;">“나는 확신하고 싶다. 인간은 사랑과 혁명을 위해 태어난 것이다” - <사양></p>
-                <p>무라카미 하루키 &lt;노르웨이의 숲&gt;</p>
-                <p>아쿠타가와 류노스케 &lt;라쇼몬&gt;</p>
-                <p>나쓰메 소세키 &lt;나는 고양이로소이다&gt;</p>
+                <p>무라카미 하루키 <노르웨이의 숲></p>
+                <p>아쿠타가와 류노스케 <라쇼몬></p>
+                <p>나쓰메 소세키 <나는 고양이로소이다></p>
             </div>
             <img src="사양.jfif" alt="사양 이미지" />
         </div>
@@ -153,16 +196,14 @@
             <div class="sub-text">
                 <h4>뮤지컬</h4>
                 <p style="font-style:italic; color:var(--accent); font-size:15px;">“세상이 무너진 이 순간, 너의 음악이 되리라!” - <팬텀></p>
-                <p>&lt;드라큘라&gt;</p>
-                <p>&lt;웃는 남자&gt;</p>
-                <p>&lt;몬테크리스토&gt;</p>
+                <p><드라큘라></p>
+                <p><웃는 남자></p>
+                <p><몬테크리스토></p>
             </div>
             <img src="팬텀.webp" alt="팬텀 포스터" />
         </div>
 
-    </div>
-</div>
-<audio id="my-bgm" src="Overture (서곡내 비극적인 이야기).mp3"></audio>
+   <audio id="my-bgm" src="Overture (서곡내 비극적인 이야기).mp3"></audio> 
 
 <script>
   window.onload = function() {
